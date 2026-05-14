@@ -37,9 +37,38 @@ Pages: `index.html`, `about-us.html`, `church-history.html`, `contact.html`, `mi
 - **Typography**: DM Sans (body/headings) + Forum (display/h4) via Google Fonts
 - **Icons**: Font Awesome 6 + Elementor Icons
 
-## Design Tokens (CSS Variables)
+## Design Preview
 
-Defined as both Astra `--ast-global-color-*` and Elementor `--e-global-color-*` variables:
+`preview/` contains static HTML/CSS pages showing the approved new design. It is tracked in source control and serves as the design reference for the WordPress theme rebuild.
+
+- `preview/css/style.css` — complete design system (source of truth for all tokens, components, and responsive rules)
+- Images reference `../site-mirror/images/` (relative path; site-mirror is gitignored)
+
+## New Theme
+
+`lighthouse-theme/` is the custom WordPress block theme being built to replace Astra + Elementor. Files:
+
+- `style.css` — theme header + all component CSS (ported from `preview/css/style.css`)
+- `theme.json` — design tokens (colors, typography, spacing, layout constraints)
+- `functions.php` — enqueues style.css and Google Fonts (Lora + DM Sans)
+- `templates/` — `front-page.html`, `page.html`, `index.html`
+- `parts/` — `header.html`, `footer.html`
+
+To deploy: zip the `lighthouse-theme/` directory and upload via WP Admin → Appearance → Themes → Upload.
+
+## New Design Tokens
+
+| Name | Hex | Role |
+|---|---|---|
+| Navy | `#1a3255` | Primary, headers, CTAs |
+| Navy Dark | `#122440` | Header bg, dark accents |
+| Gold | `#c8921a` | Accent, links, highlights |
+| Cream | `#fdf9f3` | Page background |
+| White | `#ffffff` | Cards, sections |
+| Dark | `#1c1c1c` | Body text |
+| Muted | `#5c5c5c` | Secondary text |
+
+## Original Design Tokens (Elementor/Astra — for reference only)
 
 | Variable | Value | Role |
 |---|---|---|

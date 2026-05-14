@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "1100px",
+      "wideSize": "1400px"
+    },
+    "color": {
+      "palette": [
+        { "slug": "navy",      "color": "#1a3255", "name": "Navy" },
+        { "slug": "navy-dark", "color": "#122440", "name": "Navy Dark" },
+        { "slug": "gold",      "color": "#c8921a", "name": "Gold" },
+        { "slug": "gold-light","color": "#e0a520", "name": "Gold Light" },
+        { "slug": "cream",     "color": "#fdf9f3", "name": "Cream" },
+        { "slug": "white",     "color": "#ffffff", "name": "White" },
+        { "slug": "dark",      "color": "#1c1c1c", "name": "Dark" },
+        { "slug": "muted",     "color": "#5c5c5c", "name": "Muted" },
+        { "slug": "border",    "color": "#e8e0d4", "name": "Border" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Lora', Georgia, serif",
+          "name": "Lora",
+          "slug": "lora"
+        },
+        {
+          "fontFamily": "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+          "name": "DM Sans",
+          "slug": "dm-sans"
+        }
+      ],
+      "fontSizes": [
+        { "slug": "sm",  "size": "0.875rem",  "name": "Small" },
+        { "slug": "md",  "size": "1rem",      "name": "Medium" },
+        { "slug": "lg",  "size": "1.0625rem", "name": "Large" },
+        { "slug": "xl",  "size": "1.25rem",   "name": "XL" },
+        { "slug": "2xl", "size": "1.6rem",    "name": "2XL" },
+        { "slug": "3xl", "size": "2.25rem",   "name": "3XL" },
+        { "slug": "4xl", "size": "3.25rem",   "name": "4XL" }
+      ],
+      "fluid": true
+    },
+    "spacing": {
+      "spacingSizes": [
+        { "slug": "10", "size": "0.625rem", "name": "XS" },
+        { "slug": "20", "size": "1rem",     "name": "Small" },
+        { "slug": "30", "size": "1.5rem",   "name": "Medium" },
+        { "slug": "40", "size": "2rem",     "name": "Large" },
+        { "slug": "50", "size": "4rem",     "name": "XL" },
+        { "slug": "60", "size": "6rem",     "name": "2XL" }
+      ],
+      "units": [ "px", "em", "rem", "vh", "vw", "%" ]
+    },
+    "border": {
+      "radius": true,
+      "color": true,
+      "style": true,
+      "width": true
+    },
+    "custom": {
+      "radius": "6px",
+      "shadow": "0 2px 12px rgba(26, 50, 85, 0.08)",
+      "shadow-lg": "0 8px 32px rgba(26, 50, 85, 0.14)"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#fdf9f3",
+      "text": "#1c1c1c"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--dm-sans)",
+      "fontSize": "1rem",
+      "lineHeight": "1.7"
+    },
+    "elements": {
+      "heading": {
+        "color": {
+          "text": "#1a3255"
+        },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--lora)",
+          "fontWeight": "400",
+          "lineHeight": "1.25"
+        }
+      },
+      "h1": {
+        "typography": { "fontSize": "clamp(2rem, 4vw, 3.25rem)" }
+      },
+      "h2": {
+        "typography": { "fontSize": "clamp(1.5rem, 3vw, 2.25rem)" }
+      },
+      "h3": {
+        "typography": { "fontSize": "clamp(1.2rem, 2vw, 1.6rem)" }
+      },
+      "h4": {
+        "typography": { "fontSize": "1.125rem", "fontWeight": "500" }
+      },
+      "link": {
+        "color": { "text": "#c8921a" },
+        "typography": { "textDecoration": "none" },
+        ":hover": {
+          "color": { "text": "#1a3255" }
+        }
+      }
+    }
+  }
+}
