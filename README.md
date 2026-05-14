@@ -13,9 +13,9 @@ Redesign and Elementor-removal project for **https://lbcpayette.net** (WordPress
 ## Checklist
 
 ### Phase 1 — Backup
-- [ ] Install UpdraftPlus plugin on live site
-- [ ] Take full site + database backup
-- [ ] Download backup archive locally
+- [x] Install UpdraftPlus plugin on live site
+- [x] Take full site + database backup
+- [x] Download backup archive locally
 
 ### Phase 2 — Design System
 - [ ] Define final color palette in `lighthouse-theme/theme.json`
@@ -36,9 +36,36 @@ Redesign and Elementor-removal project for **https://lbcpayette.net** (WordPress
 - [ ] Build `patterns/service-times.html` (homepage info block)
 
 ### Phase 4 — Deploy Theme
-- [ ] Zip `lighthouse-theme/` directory
-- [ ] Upload to WP Admin → Appearance → Themes → Add New → Upload
-- [ ] Activate theme; verify header and footer render correctly
+- [x] Zip `lighthouse-theme/` directory
+- [x] Upload to WP Admin → Appearance → Themes → Add New → Upload
+- [x] Activate theme; verify header and footer render correctly
+
+#### Building the theme zip
+
+PowerShell's `Compress-Archive` and .NET's `ZipFile.CreateFromDirectory` both write backslash path separators on Windows. PHP's `ZipArchive` on Linux (where WordPress runs) treats backslash paths as flat filenames — it won't resolve `lighthouse-theme\style.css` as a file inside a folder, causing "style.css missing" or "Template is missing" errors on upload.
+
+**Always build the zip with this script** (uses the `ZipArchive` API to force forward-slash entry names):
+
+```powershell
+Add-Type -Assembly System.IO.Compression.FileSystem
+Add-Type -Assembly System.IO.Compression
+
+$dest = "lighthouse-theme.zip"
+if (Test-Path $dest) { Remove-Item $dest -Force }
+$themeRoot = "$PSScriptRoot\lighthouse-theme"
+$stream = [System.IO.File]::Open($dest, [System.IO.FileMode]::Create)
+$archive = New-Object System.IO.Compression.ZipArchive($stream, [System.IO.Compression.ZipArchiveMode]::Create)
+
+Get-ChildItem $themeRoot -Recurse -File | ForEach-Object {
+    $rel = $_.FullName.Substring($themeRoot.Length + 1).Replace('\', '/')
+    $entry = $archive.CreateEntry("lighthouse-theme/$rel", [System.IO.Compression.CompressionLevel]::Optimal)
+    $es = $entry.Open(); $fs = [System.IO.File]::OpenRead($_.FullName)
+    $fs.CopyTo($es); $fs.Close(); $es.Close()
+}
+$archive.Dispose(); $stream.Close()
+```
+
+Then upload `lighthouse-theme.zip` via **WP Admin → Appearance → Themes → Add New Theme → Upload Theme**.
 
 ### Phase 5 — Page-by-Page Content Migration
 Rebuild each page in the block editor. Elementor stays active until all pages are done.
