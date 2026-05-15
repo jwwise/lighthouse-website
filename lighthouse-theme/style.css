@@ -866,9 +866,18 @@ a:hover { color: var(--navy); }
 }
 
 @media (max-width: 600px) {
-  .gn-step-header { flex-direction: column; gap: 1rem; }
-  .gn-prayer { padding: 2rem 1.5rem; }
+  .gn-hero { min-height: 78vh; padding: 3.5rem 1.25rem 3rem; }
+  .gn-roadmap { padding: 2rem 1.25rem; }
   .gn-roadmap-steps { flex-direction: column; align-items: center; }
+  .gn-step { padding: 3rem 1.25rem; }
+  .gn-step-header { flex-direction: column; gap: 1rem; }
+  .gn-prayer { padding: 2rem 1.25rem; }
+  /* Override inline 5rem padding on the prayer and what-now sections */
+  .wp-block-group.alignfull:has(.gn-divider),
+  .wp-block-group.alignfull:has(.gn-prayer) {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
 }
 
 /* === FOOTER === */
